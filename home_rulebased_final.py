@@ -63,8 +63,7 @@ print("="*60)
 # DATABASE CONNECTION
 # ============================================================================
 
-MONGO_URI = os.environ.get('MONGO_URI', 
-    "mongodb+srv://filipposkanlis_db_user:YyeJeWuecMidEubj@cluster0.nzw0b1q.mongodb.net/?retryWrites=true&w=majority&tls=true")
+MONGO_URI = os.environ.get('MONGO_URI')
 
 MONGO_DB = "thesis_db"
 COLLECTION_EVENTS = f"{ENVIRONMENT}_events"
