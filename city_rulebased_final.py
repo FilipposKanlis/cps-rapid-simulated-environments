@@ -28,7 +28,7 @@ import matplotlib.patches as patches
 # SYSTEM CONFIGURATION
 # ============================================================================
 
-UID = '684aad05aecbf959e723501c'
+UID = ''
 ENVIRONMENT = "city"
 MODE = os.environ.get('MODE', 'collect').lower()
 
