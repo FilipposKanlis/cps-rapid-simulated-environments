@@ -567,7 +567,7 @@ def save_learned_pattern():
         }
         
         mongo_patterns.insert_one(pattern_doc)
-        print(f"✅ Saved pattern '{PATTERN_TAG}' with {len(events)} steps")
+        print(f" Saved pattern '{PATTERN_TAG}' with {len(events)} steps")
         
     except Exception as e:
         print(f"Error saving pattern: {e}")
@@ -619,7 +619,7 @@ def insert_session_marker(action: str):
     if mongo_events is not None:
         try:
             mongo_events.insert_one(marker)
-            print(f"📍 Session marker saved: {action}")
+            print(f" Session marker saved: {action}")
         except Exception as e:
             print(f"Error inserting marker: {e}")
 
@@ -745,7 +745,7 @@ def create_compact_detection_report():
     # Best match info
     if detection_stats.get('best_match_pattern'):
         ax_metrics.text(0.5, 0.05, 
-                       f"🎯 Best Match: {detection_stats['best_match_pattern']} ({detection_stats['best_match_score']:.0%})",
+                       f" Best Match: {detection_stats['best_match_pattern']} ({detection_stats['best_match_score']:.0%})",
                        ha='center', fontsize=11, color=COLORS['purple'], fontweight='bold')
     
     # 2. Beautiful Donut Chart (top middle)
@@ -946,7 +946,7 @@ def create_compact_detection_report():
         pdf_filename = f"detection_report_{SESSION_ID}.pdf"
         plt.savefig(pdf_filename, format='pdf', bbox_inches='tight', 
                    facecolor=COLORS['bg'], edgecolor='none')
-        print(f"📄 PDF report saved: {pdf_filename}")
+        print(f" PDF report saved: {pdf_filename}")
     except Exception as e:
         print(f"Could not save PDF version: {e}")
     
@@ -1099,7 +1099,7 @@ def create_compact_detection_report():
     # Save as high-quality image
     report_filename = f"detection_report_{SESSION_ID}.png"
     plt.savefig(report_filename, dpi=150, bbox_inches='tight', facecolor='white', edgecolor='none')
-    print(f"\n📊 Compact visual report saved: {report_filename}")
+    print(f"\n Compact visual report saved: {report_filename}")
     
     # Optionally display (will open in a window)
     plt.show(block=False)
@@ -1108,7 +1108,7 @@ def create_compact_detection_report():
     try:
         pdf_filename = f"detection_report_{SESSION_ID}.pdf"
         plt.savefig(pdf_filename, format='pdf', bbox_inches='tight', facecolor='white', edgecolor='none')
-        print(f"📄 PDF report saved: {pdf_filename}")
+        print(f" PDF report saved: {pdf_filename}")
     except Exception as e:
         print(f"Could not save PDF version: {e}")
     
@@ -1331,7 +1331,7 @@ def generate_html_report():
     if mongo_events is not None:
         try:
             mongo_events.insert_one(marker)
-            print(f"📍 Session marker: {action}")
+            print(f" Session marker: {action}")
         except Exception as e:
             print(f"Error inserting marker: {e}")
 
@@ -1468,7 +1468,7 @@ def make_callback(topic: str):
                 if var_name == SIMULATION_END_VARIABLE:
                     if var_value in [True, 'True', 'true', 1, '1']:
                         print("\n" + "="*60)
-                        print("🛑 SIMULATION ENDED")
+                        print(" SIMULATION ENDED")
                         print("="*60)
                         shutdown_gracefully()
                         return
@@ -1725,7 +1725,7 @@ def shutdown_gracefully():
 
     insert_session_marker("end")
 
-    print(f"\n📊 Session Summary:")
+    print(f"\n Session Summary:")
     print(f"Session ID: {SESSION_ID}")
     print(f"Duration: {get_elapsed_time():.1f} seconds")
     print("="*60)
@@ -1768,7 +1768,7 @@ if MODE == 'detect':
         pattern_matcher = PatternMatcher(reference_patterns)
         print(f"I'll compare this detection session against {len(reference_patterns)} trained patterns: {', '.join(reference_patterns.keys())}.")
     else:
-        print("⚠️  No patterns loaded - run in collect mode first!")
+        print("  No patterns loaded - run in collect mode first!")
 
 def main():
     """Main execution loop"""
@@ -1783,18 +1783,18 @@ def main():
 
     print("\n" + "="*60)
     if MODE == 'collect':
-        print("📝 TRAINING MODE - Recording pattern")
+        print(" TRAINING MODE - Recording pattern")
     else:
-        print("🔍 DETECTION MODE - Identifying person")
+        print(" DETECTION MODE - Identifying person")
     print("="*60 + "\n")
     
-    print(f"⏳ Warmup: {WARMUP_SECONDS} seconds...")
-    print(f"📊 Waiting for simulation end signal...")
+    print(f" Warmup: {WARMUP_SECONDS} seconds...")
+    print(f" Waiting for simulation end signal...")
     
     try:
         node.run_forever()
     except KeyboardInterrupt:
-        print("\n⚠️ Manual interrupt")
+        print("\n Manual interrupt")
         shutdown_gracefully()
 
 if __name__ == "__main__":
